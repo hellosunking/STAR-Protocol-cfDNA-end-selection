@@ -6,6 +6,8 @@
 
 use strict;
 use warnings;
+use FindBin;
+
 
 if( $#ARGV < 2 ) {
 	print STDERR "\nUsage: $0 <input.pe.[bs]am> <output.bed[.gz]> <out.size> [min.qual=0] [autosomal.only=0]\n\n",
@@ -18,7 +20,7 @@ my $minqual  = $ARGV[3] || 0;
 my $autoONLY = $ARGV[4] || 0;
 
 if( $ARGV[0] =~ /bam$/ ) {
-	open IN, "samtools view -@ 4 $ARGV[0] |" or die("$!");
+	open IN, "$FindBin::Bin/samtools view -@ 4 $ARGV[0] |" or die("$!");
 } else {
 	open IN, "$ARGV[0]" or die( "$!" );
 }

@@ -47,4 +47,4 @@ while read sid Allreads Endselected Nindex; do
 done < $bedlist
 
 ## make matrix
-python $PRG/get_matrix.py $DIR/features_5M.txt $sampleinfo
+python3 $PRG/get_matrix.py $DIR/features_5M.txt $sampleinfo
