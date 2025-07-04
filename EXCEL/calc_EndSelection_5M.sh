@@ -71,7 +71,12 @@ while read sid Allreads Endselected Nindex; do
 	S150=`cat $DIR/size5M/feature_original/$sample/$sid.size | awk '{if ($1 == "150")print}' | cut -f 4`
 	S150_es=`cat $DIR/size5M/feature_selection/$sample/$sid.size | awk '{if ($1 == "150")print}' | cut -f 4`
 	DeltaS=`perl -e "print $S150_es-$S150"`
-	
+
+	## L250, optional
+	L250=`cat $DIR/size5M/feature_original/$sample/$sid.size | perl -lane 'print 1-$F[3] if $F[0]==250'`
+	L250_es=`cat $DIR/size5M/feature_selection/$sample/$sid.size | perl -lane 'print 1-$F[3] if $F[0]==250'`
+	DeltaL=`perl -e "print $L250_es-$L250"`
+
 	CCCA=`grep ^CCCA $DIR/motif5M/feature_original/$sample/$sid.left_right.motif | cut -f 5`
 	CCCA_es=`grep ^CCCA $DIR/motif5M/feature_selection/$sample/$sid.left_right.motif | cut -f 5`
 	DeltaM=`perl -e "print $CCCA_es-$CCCA"`
